@@ -31,7 +31,14 @@ class PersonneType extends AbstractType
                     return $repository->createAplphabeticalQueryBuilder();
                 }
             ])
-            ->add('dateDeNaissance',DateType::class)
+            ->add('dateDeNaissance',DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr'=> [
+                    'class' => "js-datepicker"
+                ],
+                'html5' => false
+            ])
             ->add('isActive',ChoiceType::class,[
                 'choices' => [
                     'Oui' => true,
