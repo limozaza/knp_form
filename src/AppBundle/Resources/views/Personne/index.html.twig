@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <h3>Listes des personnes</h3>
+    <p><a href="{{ path('personne_new') }}">Ajouter</a></p>
+
+    {% if personnes | length > 0 %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Service</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+                <td>{{ personne.nom }}</td>
+                <td>{{ personne.prenom }}</td>
+                <td>{{ personne.service }}</td>
+                <td>
+                    <button type="button" class="btn btn-success btn-xs">Editer</button>
+                    <button type="button" class="btn btn-danger btn-xs">Supprimer</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-warning alert-dismissible">
+            <p>Y'a toujour pas d'enregistrement de personnes</p>
+        </div>
+    {% endif %}
+
+{% endblock %}
