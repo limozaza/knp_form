@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Personne;
 use AppBundle\Form\PersonneType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,6 +38,28 @@ class PersonneController extends Controller
            return $this->redirectToRoute('personne_list');
         }
         return $this->render('AppBundle:Personne:create.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/personnes/{id}/edit", name="personne_edit")
+     */
+    public function editAction(Request $request, Personne $personne)
+    {
+        $form = $this->createForm(PersonneType::class, $personne);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $personne = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($personne);
+            $em->flush();
+
+            $this->addFlash('success','Edition confirmé');
+
+            return $this->redirectToRoute('personne_list');
+        }
+        return $this->render('AppBundle:Personne:edit.html.twig',[
             'form' => $form->createView()
         ]);
     }

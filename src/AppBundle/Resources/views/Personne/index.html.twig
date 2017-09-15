@@ -19,8 +19,8 @@
                 <td>{{ personne.prenom }}</td>
                 <td>{{ personne.service }}</td>
                 <td>
-                    <button type="button" class="btn btn-success btn-xs">Editer</button>
-                    <button type="button" class="btn btn-danger btn-xs">Supprimer</button>
+                    <a class="btn btn-success btn-xs" href="{{ path('personne_edit',{ 'id': personne.id }) }}">Editer</a>
+                    <a class="btn btn-danger btn-xs">Supprimer</a>
                 </td>
             </tr>
         {% endfor %}

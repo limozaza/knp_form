@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+                {{ form_row(form.nom) }}
+                {{ form_row(form.prenom) }}
+                {{ form_row(form.dateDeNaissance) }}
+                {{ form_row(form.service) }}
+                {{ form_row(form.isActive,{
+                    'label': 'Etat'
+                }) }}
+<button class="btn btn-primary" type="submit" formnovalidate>{{ buttonText }}</button>
+{{ form_end(form) }}
