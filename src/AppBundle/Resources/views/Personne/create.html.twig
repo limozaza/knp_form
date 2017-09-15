@@ -10,8 +10,14 @@
         <div class="col-xs-12">
             <h1>Nouvelle Personne</h1>
             {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                {{ form_row(form.nom) }}
+                {{ form_row(form.prenom) }}
+                {{ form_row(form.dateDeNaissance) }}
+                {{ form_row(form.service) }}
+                {{ form_row(form.isActive,{
+                    'label': 'Etat'
+                }) }}
+                <button class="btn btn-primary" type="submit" formnovalidate>Enregistrer</button>
             {{ form_end(form) }}
         </div>
     </div>
@@ -22,9 +28,6 @@
     {{ parent() }}
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(function () {
-            console.log('charger')
-        })
         jQuery(document).ready(function() {
             $('.js-datepicker').datepicker({
                 format: 'dd-mm-yyyy'

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Personne
@@ -25,6 +26,7 @@ class Personne
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $nom;
 
@@ -32,6 +34,7 @@ class Personne
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $prenom;
 
@@ -43,11 +46,13 @@ class Personne
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Service")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $service;
 
     /**
      * @ORM\Column(name="date_de_naissance", type="date")
+     * @Assert\Date()
      */
     private $date_de_naissance;
 
