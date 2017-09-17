@@ -19,6 +19,7 @@
                 <td>{{ personne.prenom }}</td>
                 <td>{{ personne.service }}</td>
                 <td>
+                    <a class="btn btn-warning btn-xs" href="{{ path('personne_show',{ 'slug': personne.slug }) }}">Afficher</a>
                     <a class="btn btn-success btn-xs" href="{{ path('personne_edit',{ 'id': personne.id }) }}">Editer</a>
                     <a class="btn btn-danger btn-xs">Supprimer</a>
                 </td>

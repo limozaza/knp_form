@@ -63,4 +63,14 @@ class PersonneController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/personnes/{slug}/", name="personne_show")
+     */
+    public function showtAction(Personne $personne)
+    {
+        return $this->render('AppBundle:Personne:show.html.twig',['personne'=>$personne]);
+    }
+
+
 }
