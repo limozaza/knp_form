@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <h3>{{ annonce.name }}</h3>
+    <p>{{ annonce.date|date('Y-m-d') }}</p>
+    <h5>Les catgories</h5>
+    <ul>
+        {% for categorie in annonce.categories %}
+            <li>{{ categorie.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
