@@ -5,7 +5,31 @@
     <h5>Les catgories</h5>
     <ul>
         {% for categorie in annonce.categories %}
-            <li><a href="{{ path('categorie',{'id':categorie.id}) }}">{{ categorie.name }}</a></li>
+            <li><a href="{{ path('categorie',{'id':categorie.id}) }}">{{ categorie.name }}</a> ||
+                <button class="btn btn-danger js-remove" data-url="{{ path('annonce_categorie_remove',{
+                    'id' : annonce.id,
+                    'cat_id': categorie.id
+                }) }}">supprimé</button>
+            </li>
         {% endfor %}
     </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $(".js-remove").click(function (e) {
+              e.preventDefault();
+              var $el = $(this).closest('.js-remove');
+              $.ajax({
+                    url: $(this).data('url'),
+                    method: 'DELETE',
+                    success: function (data) {
+                        $el.hide();
+                    }
+              })
+            })
+        })
+    </script>
 {% endblock %}
