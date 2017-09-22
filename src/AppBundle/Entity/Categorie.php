@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,16 @@ class Categorie
      */
     private $name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Annonce", mappedBy="categories")
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private $annonces;
+
+    public function __construct()
+    {
+        $this->annonces = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,5 +72,13 @@ class Categorie
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return ArrayCollection|Annonce[]
+     */
+    public function getAnnonces()
+    {
+        return $this->annonces;
     }
 }

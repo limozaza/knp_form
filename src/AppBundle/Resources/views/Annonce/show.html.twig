@@ -5,7 +5,7 @@
     <h5>Les catgories</h5>
     <ul>
         {% for categorie in annonce.categories %}
-            <li>{{ categorie.name }}</li>
+            <li><a href="{{ path('categorie',{'id':categorie.id}) }}">{{ categorie.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

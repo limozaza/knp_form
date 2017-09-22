@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <h3>{{ categorie.name }}</h3>
+
+    <h5>Les annonces</h5>
+    <ul>
+        {% for annonce in categorie.annonces %}
+            <li><a href="{{ path('annonce',{'id':annonce.id}) }}">{{ annonce.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
