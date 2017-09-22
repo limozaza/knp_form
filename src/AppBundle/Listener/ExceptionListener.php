@@ -17,12 +17,10 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 class ExceptionListener
 {
     protected $templating;
-    protected $kernel;
 
-    public function __construct(EngineInterface $templating, $kernel)
+    public function __construct(EngineInterface $templating)
     {
         $this->templating = $templating;
-        $this->kernel = $kernel;
     }
 
     public function onKernelException(GetResponseForExceptionEvent $event)
@@ -37,7 +35,6 @@ class ExceptionListener
 
         // set response content
         $response->setContent(
-        // create you custom template AcmeFooBundle:Exception:exception.html.twig
             $this->templating->render(
                 ':Exception:exception.html.twig',
                 array('exception' => $exception)
