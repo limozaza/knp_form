@@ -7,3 +7,9 @@ services:
     #service_name:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+
+    listener.exception_listener:
+        class: AppBundle\Listener\ExceptionListener
+        arguments: ['@templating', '@kernel']
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
