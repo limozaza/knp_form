@@ -37,7 +37,7 @@ class Annonce
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Categorie",inversedBy="annonces")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Categorie",inversedBy="annonces", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="annonce_categorie")
      */
     private $categories;
