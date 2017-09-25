@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+
+
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.active,{
+        'label': 'Etat'
+    }) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.categories) }}
+
+    <button class="btn btn-primary" type="submit" formnovalidate>Editer</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+

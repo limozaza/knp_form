@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Annonce;
 use AppBundle\Entity\Categorie;
+use AppBundle\Form\AnnonceType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -53,5 +54,48 @@ class AnnonceController extends Controller
         $em->persist($annonce);
         $em->flush();
         return new Response(null,Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @Route("/annonce/new", name="annonce_new")
+     */
+    public function newAnnonceAction(Request $request)
+    {
+        $form = $this->createForm(AnnonceType::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $annonce = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($annonce);
+            $em->flush();
+
+            $this->addFlash('success','Creation confirmé');
+
+            return $this->redirectToRoute('annonces');
+        }
+        return $this->render('AppBundle:Annonce:create.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+     * @Route("/annonces/edit/{id}", name="annonce_edit")
+     */
+    public function editAction(Request $request,Annonce $annonce)
+    {
+        $form = $this->createForm(AnnonceType::class,$annonce);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $annonce = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($annonce);
+            $em->flush();
+
+            $this->addFlash('success','Creation confirmé');
+
+            return $this->redirectToRoute('annonces');
+        }
+        return $this->render('AppBundle:Annonce:edit.html.twig',[
+            'form' => $form->createView()
+        ]);
     }
 }

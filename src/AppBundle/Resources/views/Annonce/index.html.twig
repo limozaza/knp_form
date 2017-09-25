@@ -6,6 +6,12 @@
             {{ annonce.id }}  ::
             <a href="{{ path('annonce',{'id' : annonce.id}) }}">{{ annonce.name }}</a>
              :: <strong>{{ annonce.categories|length }}</strong>
+             :::::::<a href="{{ path('annonce_edit',{'id' : annonce.id}) }}">Modifier une annonce</a>
         </p>
+
     {% endfor %}
+
+    <hr/>
+    <p><a href="{{ path('annonce_new') }}">Ajouter une annonce</a></p>
+
 {% endblock %}
